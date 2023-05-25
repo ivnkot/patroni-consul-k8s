@@ -13,7 +13,7 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: &cluster_name patroni
+  name: &cluster_name patronidemo
   labels:
     application: patroni
     cluster-name: *cluster_name
