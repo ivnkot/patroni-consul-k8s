@@ -3,15 +3,15 @@
 
 ### Добавляем helm chart Consul:
 ```
-$ helm repo add hashicorp https://helm.releases.hashicorp.com
+helm repo add hashicorp https://helm.releases.hashicorp.com
 ```
 ### Устанавливаем Consul:
 ```
-$ helm install --values consul/values.yaml consul hashicorp/consul --create-namespace --namespace consul --version "1.1.0"
+helm install --values consul/values.yaml consul hashicorp/consul --create-namespace --namespace consul --version "1.1.0"
 ```
 ### Проверяем pods:
 ```
-$ kubectl get pods --namespace consul
+kubectl get pods --namespace consul
 ```
 ```
 NAME                                           READY   STATUS    RESTARTS   AGE
@@ -21,19 +21,19 @@ consul-webhook-cert-manager-64889c4964-wxc9b   1/1     Running   0          2m34
 ```
 ### Задаем переменные для проверки работоспособности Consul:
 ```
-$ export CONSUL_HTTP_TOKEN=$(kubectl get --namespace consul secrets/consul-bootstrap-acl-token --template={{.data.token}} | base64 -d)
+export CONSUL_HTTP_TOKEN=$(kubectl get --namespace consul secrets/consul-bootstrap-acl-token --template={{.data.token}} | base64 -d)
 
-$ export CONSUL_HTTP_ADDR=https://127.0.0.1:8501
+export CONSUL_HTTP_ADDR=https://127.0.0.1:8501
 
-$ export CONSUL_HTTP_SSL_VERIFY=false
+export CONSUL_HTTP_SSL_VERIFY=false
 ```
 ### Открываем новое окно терминала и вводим команду port-forward: 
 ```
-$ kubectl port-forward svc/consul-ui --namespace consul 8501:443
+kubectl port-forward svc/consul-ui --namespace consul 8501:443
 ```
 ### В основном терминале вводим команду на проверку доступности сервисов:
 ```
-$ curl -k \
+curl -k \
     --header "X-Consul-Token: $CONSUL_HTTP_TOKEN" \
     $CONSUL_HTTP_ADDR/v1/catalog/services
 ```
@@ -43,7 +43,7 @@ $ curl -k \
 ```
 ### Проверяем доступность агентов Consul:
 ```
-$ curl -k \
+curl -k \
 
    --header "X-Consul-Token: $CONSUL_HTTP_TOKEN" \
 
@@ -87,15 +87,15 @@ $ curl -k \
 ```
 ### Переходим к деплою Patroni. Заходим в директорию patroni и собираем Docker image:
 ```
-$ docker build -f Dockerfile.consul . -t patroni:consul
+cd patroni && docker build -f Dockerfile.consul . -t patroni:consul
 ```
 ### Отправляем Patroni в деплой в k8s:
 ```
-$ kubectl apply -f patroni_k8s.yaml
+kubectl apply -f patroni_k8s.yaml
 ```
 ### Проверяем pods и роли:
 ```
-$ kubectl get pods -L role
+kubectl get pods -L role
 ```
 ### Output: 
     NAME            READY   STATUS    RESTARTS   AGE   ROLE
@@ -105,10 +105,11 @@ $ kubectl get pods -L role
 
 ### Проваливаемся в контейнер и проверяем кластер:
 ```
-$ kubectl exec -ti patronidemo-0 -- bash
+kubectl exec -ti patronidemo-0 -- bash
 ```
+postgres@patronidemo-0:~$ 
 ```
-postgres@patronidemo-0:~$ patronictl list
+patronictl list
 ```
 ### Output: 
     + Cluster: patronidemo (7186662553319358497) ----+----+-----------+
@@ -120,7 +121,8 @@ postgres@patronidemo-0:~$ patronictl list
     +---------------+------------+---------+---------+----+-----------+
    
  ### Источники и документация:
- https://developer.hashicorp.com/consul/tutorials/kubernetes/kubernetes-kind
+ https://developer.hashicorp.com/consul/tutorials/get-started-kubernetes
+ 
  https://github.com/zalando/patroni/tree/master
 
 
