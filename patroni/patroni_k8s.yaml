@@ -5,7 +5,7 @@ metadata:
   name: patronidemo-config
   labels:
     application: patroni
-    cluster-name: patroni-consul
+    cluster-name: patronidemo
 spec:
   clusterIP: None
 
