@@ -22,9 +22,9 @@ bootstrap:
   - locale: en_US.UTF-8
   - data-checksums
 restapi:
-  connect_address: '0.0.0.0:8008'
+  connect_address: 'patrondemo:8008'
 postgresql:
-  connect_address: '0.0.0.0:5432'
+  connect_address: 'patrondemo:5432'
   authentication:
     superuser:
       password: '${PATRONI_SUPERUSER_PASSWORD}'

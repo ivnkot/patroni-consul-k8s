@@ -56,8 +56,6 @@ spec:
         env:
         - name: PATRONI_CONSUL_URL
           value: 'http://consul-server.consul:8500'
-        - name: PATRONI_CONSUL_REGISTER_SERVICE
-          value: 'true'
         - name: PATRONI_SUPERUSER_USERNAME
           value: postgres
         - name: PATRONI_SUPERUSER_PASSWORD
