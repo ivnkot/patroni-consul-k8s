@@ -85,9 +85,9 @@ $ curl -k \
     }
 ]
 ```
-### Переходим к деплою Patroni. Собираем Docker image:
+### Переходим к деплою Patroni. Заходим в директорию patroni и собираем Docker image:
 ```
-$ docker build -f patroni/Dockerfile.consul . -t patroni:consul
+$ docker build -f Dockerfile.consul . -t patroni:consul
 ```
 ### Отправляем Patroni в деплой в k8s:
 ```
