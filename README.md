@@ -118,6 +118,9 @@ postgres@patronidemo-0:~$ patronictl list
     | patronidemo-1 | 10.244.0.6 | Replica | running |  1 |         0 |
     | patronidemo-2 | 10.244.0.7 | Replica | running |  1 |         0 |
     +---------------+------------+---------+---------+----+-----------+
-
+   
+ ### Источники и документация:
+ https://developer.hashicorp.com/consul/tutorials/kubernetes/kubernetes-kind
+ https://github.com/zalando/patroni/tree/master
 
 
