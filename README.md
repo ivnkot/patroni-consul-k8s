@@ -119,7 +119,7 @@ patronictl list
     | patronidemo-1 | 10.244.0.6 | Replica | running |  1 |         0 |
     | patronidemo-2 | 10.244.0.7 | Replica | running |  1 |         0 |
     +---------------+------------+---------+---------+----+-----------+
- ### Проверяем регистрацию сервисщв Patroni в Consul:
+ ### Проверяем регистрацию сервисов Patroni в Consul:
  ```
  consul catalog services
  ```
