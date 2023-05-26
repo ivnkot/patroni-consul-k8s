@@ -10,6 +10,9 @@ fi
 cat > /home/postgres/patroni.yml <<__EOF__
 bootstrap:
   dcs:
+    consul:
+      url: ${PATRONI_CONSUL_URL}
+      dc: dc-1
     postgresql:
       use_pg_rewind: true
       pg_hba:
