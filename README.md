@@ -93,15 +93,15 @@ cd patroni && docker build -f Dockerfile.consul . -t patroni:consul
 ```
 kubectl apply -f patroni_k8s.yaml
 ```
-### Проверяем pods и роли:
+### Проверяем pods:
 ```
-kubectl get pods -L role
+kubectl get pods 
 ```
 ### Output: 
-    NAME            READY   STATUS    RESTARTS   AGE   ROLE
-    patronidemo-0   1/1     Running   0          34s   master
-    patronidemo-1   1/1     Running   0          30s   replica
-    patronidemo-2   1/1     Running   0          26s   replica
+    NAME            READY   STATUS    RESTARTS   AGE   
+    patronidemo-0   1/1     Running   0          34s   
+    patronidemo-1   1/1     Running   0          30s   
+    patronidemo-2   1/1     Running   0          26s   
 
 ### Проваливаемся в контейнер и проверяем кластер:
 ```
@@ -119,7 +119,16 @@ patronictl list
     | patronidemo-1 | 10.244.0.6 | Replica | running |  1 |         0 |
     | patronidemo-2 | 10.244.0.7 | Replica | running |  1 |         0 |
     +---------------+------------+---------+---------+----+-----------+
-   
+ ### Проверяем регистрацию сервисщв Patroni в Consul:
+ ```
+ consul catalog services
+ ```
+ ### Output:
+ ```
+ $ consul catalog services
+consul
+patronidemo
+ ```
  ### Источники и документация:
  https://developer.hashicorp.com/consul/tutorials/get-started-kubernetes
  
