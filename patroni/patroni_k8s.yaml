@@ -58,6 +58,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP        
+        - name: PATRONI_CONSUL_REGISTER_SERVICE
+          value: 'true'
         - name: PATRONI_KUBERNETES_USE_ENDPOINTS
           value: 'true'
         - name: PATRONI_CONSUL_URL
